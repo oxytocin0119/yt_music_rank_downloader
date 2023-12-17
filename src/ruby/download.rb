@@ -79,8 +79,8 @@ if latest_date
         end
       end
 
-      if File.exist?(tmp_file_path)
-        symlink_path = File.join(date_dir, "/#{tmp_name}.mp3")
+      symlink_path = File.join(date_dir, "/#{tmp_name}.mp3")
+      if File.exist?(tmp_file_path) && !(File.exist?(symlink_path))
         File.symlink(tmp_file_path, symlink_path)
       end
 
