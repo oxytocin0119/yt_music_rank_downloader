@@ -88,7 +88,8 @@ if latest_date
     end
   end
   
-  date = Time.now.strftime('%Y%m%d')
+  #date = Time.now.strftime('%Y%m%d')
+  date = latest_date
 
   File.write("#{data_dir}/data_#{date}.json", downloads.to_json)
   
