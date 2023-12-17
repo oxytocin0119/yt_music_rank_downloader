@@ -66,19 +66,22 @@ if latest_date
     begin
       p "#{index+1} #{tmp_hash['name']}"
       tmp_name = tmp_hash['name'].gsub(' ', '_')
+      tmp_file_path = File.join(all_dir, "/#{tmp_name}.mp3")
+
       if csv_data && csv_data.any?{ |row| row[1].chomp == tmp_hash['url'].chomp }
         p "downloaded"
       else
         %x(#{root_dir}/bin/yt-dlp --extract-audio --audio-format mp3 --output "#{all_dir}/#{tmp_name}.%(ext)s" #{tmp_hash['url']})
-        tmp_file_path = File.join(all_dir, "/#{tmp_name}.mp3")
         if File.exist?(tmp_file_path)
           CSV.open(csv_file, File.exist?(csv_file) ? 'a' : 'w') do |csv|
             csv << [tmp_hash["name"], tmp_hash["url"]]
           end
-          symlink_path = File.join(date_dir, "/#{tmp_name}.mp3")
-          File.symlink(tmp_file_path, symlink_path)
         end
       end
+
+      symlink_path = File.join(date_dir, "/#{tmp_name}.mp3")
+      File.symlink(tmp_file_path, symlink_path)
+
     rescue
       puts "Failed! #{tmp_hash['name']}"
       puts "#{tmp_hash['url']}"
