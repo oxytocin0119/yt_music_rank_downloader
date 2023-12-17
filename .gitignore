@@ -1,8 +1,7 @@
 !/**/.gitkeep
 !/db/**/.gitkeep
-/db/csv/*.csv
-/db/json/tmp/*.json
-/db/json/data/*.json
+/db/csv/**/*.csv
+/db/json/**/*.json
 /db/downloads/**/*.mp3
 !/bin/**/.gitkeep
 /bin/*
