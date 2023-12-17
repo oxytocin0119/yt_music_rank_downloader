@@ -79,8 +79,10 @@ if latest_date
         end
       end
 
-      symlink_path = File.join(date_dir, "/#{tmp_name}.mp3")
-      File.symlink(tmp_file_path, symlink_path)
+      if File.exist?(tmp_file_path)
+        symlink_path = File.join(date_dir, "/#{tmp_name}.mp3")
+        File.symlink(tmp_file_path, symlink_path)
+      end
 
     rescue
       puts "Failed! #{tmp_hash['name']}"
