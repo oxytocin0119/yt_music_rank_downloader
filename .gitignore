@@ -4,6 +4,6 @@
 /db/json/**/*.json
 /db/downloads/**/*.mp3
 !/bin/**/.gitkeep
-/bin/*
+#/bin/*
 !/config/**/.gitkeep
 /config/*
